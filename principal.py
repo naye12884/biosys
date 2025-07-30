@@ -1,15 +1,15 @@
 import flet as ft
-import registro_biomasa as reg
-import consulta_usuario as cons
+#import registro_biomasa as reg
+#import consulta_usuario as cons
 def main (page: ft.Page):
 
-    def mostrar_registro(e: ft.ControlEvent):
-        page.clean()
-        reg.main(page)
+    #def mostrar_registro(e: ft.ControlEvent):
+        #page.clean()
+        #reg.main(page)
     
-    def consulta(e: ft.ControlEvent):
-        page.clean()
-        cons.main(page)
+    #def consulta(e: ft.ControlEvent):
+        #page.clean()
+        #cons.main(page)
 
     #Configuración de la página
     page.title = "Menú principal"
