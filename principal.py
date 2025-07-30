@@ -21,8 +21,8 @@ def main (page: ft.Page):
         bgcolor="purple"
     )
     #Componentes de la página
-    btn_registro=ft.ElevatedButton("Registro", on_click=mostrar_registro)
-    btn_consultas=ft.ElevatedButton("Consulta", on_click=consulta)
+    btn_registro=ft.ElevatedButton("Registro")
+    btn_consultas=ft.ElevatedButton("Consulta")
     page.add(btn_registro, btn_consultas)
     page.update()
 
