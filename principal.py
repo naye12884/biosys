@@ -1,31 +1,32 @@
 import flet as ft
-#import registro_biomasa as reg
-#import consulta_usuario as cons
-def main (page: ft.Page):
+import alta_usuario as usuarionuevo
+import consulta_usuario as consultau
 
-    #def mostrar_registro(e: ft.ControlEvent):
-        #page.clean()
-        #reg.main(page)
-    
-    #def consulta(e: ft.ControlEvent):
-        #page.clean()
-        #cons.main(page)
+def main(page: ft.Page):
+
+    def agregar_usuario(e: ft.ControlEvent):
+        page.clean()
+        usuarionuevo.main(page)
+
+    def consulta_us(e: ft.ControlEvent):
+        page.clean()
+        consultau.main(page)
 
     #Configuración de la página
     page.title = "Menú principal"
-    page.theme_mode = "light"
+    page.theme_mode= "light"
     page.appbar = ft.AppBar(
-        title=ft.Text("Sistema de Gestión de Bioenergías"),
-        leading=ft.Icon("energy_savings"),
-        color="white",
-        bgcolor="purple"
+        title= ft.Text("Sistema de Gestión de Bioenergías"),
+        leading= ft.Icon("energy_savings_leaf"),
+        color= "white",
+        bgcolor= "purple",  
     )
-    #Componentes de la página
-    btn_registro=ft.ElevatedButton("Registro")
-    btn_consultas=ft.ElevatedButton("Consulta")
-    page.add(btn_registro, btn_consultas)
+
+    btn_nuevo = ft.ElevatedButton("Agregar nuevo usuario", on_click=agregar_usuario)
+    btn_consultas = ft.ElevatedButton("Consultar usuarios", on_click=consulta_us)
+    #Añadir a la página
+    page.add(btn_nuevo,btn_consultas)
     page.update()
-
-
-if __name__== "__main__":
+    
+if __name__ == "__main__":
     ft.app(target=main)
