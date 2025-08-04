@@ -1,5 +1,5 @@
 import flet as ft
-import principal as pr
+import main as pr
 import airtable as at #Agregué esto
 from pyairtable.formulas import match #Agregué esto
 
