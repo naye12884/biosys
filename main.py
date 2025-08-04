@@ -1,38 +1,32 @@
 import flet as ft
-import principal as pr
+import alta_usuario as usuarionuevo
+import consulta_usuario as consultau
 
-#Función principal
 def main(page: ft.Page):
-    
-    def ingresar(e: ft.ControlEvent):
+
+    def agregar_usuario(e: ft.ControlEvent):
         page.clean()
-        pr.main(page)
-    
+        usuarionuevo.main(page)
+
+    def consulta_us(e: ft.ControlEvent):
+        page.clean()
+        consultau.main(page)
+
     #Configuración de la página
-    page.theme_mode = "light"
-    page.horizontal_alignment = "center"
-    page.title = "Inicio de sesión"
-    page.window.width = 800
-    page.window.height = 600
-
-    #Componentes de la página
-    logo =ft.Icon("person", size=100, color="pink")
-    txt_bienvenido=ft.Text("Bienvenida", size=30)
-    txt_usuario = ft.TextField(label="Username/Correo", width=250)
-    txt_contra = ft.TextField(label="Contraseña", password=True,can_reveal_password=True, width=250)
-    btn_login = ft.FilledButton(
-        "Iniciar sesión", 
-        icon=ft.Icons.LOGIN, 
-        width=250,
-        color="white",
-        bgcolor="pink",
-        on_click=ingresar
+    page.title = "Menú principal"
+    page.theme_mode= "light"
+    page.appbar = ft.AppBar(
+        title= ft.Text("Sistema de Gestión de Bioenergías"),
+        leading= ft.Icon("energy_savings_leaf"),
+        color= "white",
+        bgcolor= "purple",  
     )
-    page.add (logo, txt_bienvenido, txt_usuario, txt_contra, btn_login)
 
-    #Actualizar la página
+    btn_nuevo = ft.ElevatedButton("Agregar nuevo usuario", on_click=agregar_usuario)
+    btn_consultas = ft.ElevatedButton("Consultar usuarios", on_click=consulta_us)
+    #Añadir a la página
+    page.add(btn_nuevo,btn_consultas)
     page.update()
-
-#Inicio de la aplicación
-if __name__== "__main__":
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+    
+if __name__ == "__main__":
+    ft.app(target=main)
