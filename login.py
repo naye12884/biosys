@@ -5,7 +5,12 @@ from pyairtable.formulas import match #Agregué esto
 
 # Función principal
 def main(page: ft.Page):
+    page.assets_dir = "assets"
+    page.fonts = {
+        "Poppins": "fonts/Poppins-Regular.ttf"
+    }
 
+    page.theme = ft.Theme(font_family="Poppins")
     def ingresar(e: ft.ControlEvent):
         usuario = txt_usuario.value #Agregué esto
         password = txt_contra.value #Agregué esto
@@ -38,18 +43,17 @@ def main(page: ft.Page):
     page.title = "Inicio de sesión"
     page.window.width = 800
     page.window.height = 600
-
     # Componentes de la página
-    logo = ft.Icon("person", size=100, color="pink")
-    txt_bienvenido = ft.Text("Bienvenida", size=30)
-    txt_usuario = ft.TextField(label="Username/Correo", width=250)
-    txt_contra = ft.TextField(label="Contraseña", password=True, can_reveal_password=True, width=250)
+    logo = ft.Icon("person", size=100, color="green")
+    txt_bienvenido = ft.Text("¡Bienvenido al Sistema de Gestión de Bioenergías!", size=30)
+    txt_usuario = ft.TextField(label="Username/Correo", width=300)
+    txt_contra = ft.TextField(label="Contraseña", password=True, can_reveal_password=True, width=300)
     btn_login = ft.FilledButton(
         "Iniciar sesión",
         icon=ft.Icons.LOGIN,
         width=250,
         color="white",
-        bgcolor="pink",
+        bgcolor="green",
         on_click=ingresar
     )
 
@@ -58,4 +62,4 @@ def main(page: ft.Page):
 
 # Inicio de la aplicación
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER, assets_dir="assets")

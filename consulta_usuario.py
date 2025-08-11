@@ -1,12 +1,13 @@
 import flet as ft
 import airtable as at
+import main as menu_principal  # Para regresar al menú
 
 def main(page: ft.Page):
-    #Configuración de la página
-    page.title="Consultas"
-    page.theme_mode= "light"
-    page.window.width=800
-    page.window.height=600
+    # Configuración de la página
+    page.title = "Consultas"
+    page.theme_mode = "light"
+    page.window.width = 800
+    page.window.height = 600
     page.appbar = ft.AppBar(
         title=ft.Text("Consulta de usuarios en la nube"),
         leading=ft.Icon("cloud"),
@@ -14,7 +15,9 @@ def main(page: ft.Page):
         bgcolor="green",
         color="white"
     )
-    #Tabla de usuarios
+    page.bgcolor = ft.Colors.WHITE
+
+    # Tabla de usuarios
     encabezado = [
         ft.DataColumn(ft.Text("Clave")),
         ft.DataColumn(ft.Text("Contraseña")),
@@ -27,14 +30,26 @@ def main(page: ft.Page):
         celda1 = ft.DataCell(ft.Text(d.clave))
         celda2 = ft.DataCell(ft.Text(d.contra, color="white", selectable=True))
         celda3 = ft.DataCell(ft.Text(d.nombre))
-        celda4 = ft.DataCell(ft.Checkbox(value=d.admin, disabled=True)) #QUE SEA UN CHECK
+        celda4 = ft.DataCell(ft.Checkbox(value=d.admin, disabled=True))
         fila = ft.DataRow([celda1, celda2, celda3, celda4])
         filas.append(fila)
-    tbl_usuarios = ft.DataTable(encabezado,filas)
+    tbl_usuarios = ft.DataTable(encabezado, filas)
 
-    page.add(tbl_usuarios)
+    # Función para regresar al menú
+    def regresar_menu(e):
+        page.clean()
+        menu_principal.main(page)
+
+    btn_regresar = ft.FilledButton(
+        text="Regresar al menú",
+        icon="arrow_back",
+        bgcolor="blue",
+        on_click=regresar_menu
+    )
+
+    # Añadir tabla y botón
+    page.add(tbl_usuarios, ft.Divider(), btn_regresar)
     page.update()
 
-#Inicio de la aplicación
-if __name__== "__main__":
+if __name__ == "__main__":
     ft.app(target=main)
